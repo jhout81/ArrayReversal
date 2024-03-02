@@ -1,27 +1,28 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayReversal {
     public static void main(String[] args) {
-        //initialize and declare
-        ArrayList<Integer> nums = new ArrayList<>();
+        int[] numsUser = new int[1];
         Integer numsAdd = 0;
         Scanner in = new Scanner(System.in);
-        //while loop to read in integers and populate the arraylist
+        int count = -1;
+        //loop to read in users integers into each new copy of the array
         while (numsAdd != -1) {
             System.out.println("Enter values (-1 to stop): ");
+            //increments 1 each time so the user input gets put into the next index
+            count += 1;
             numsAdd = in.nextInt();
-            nums.add(numsAdd);
+            numsUser[count] = numsAdd;
+            //creates a new copy of the array 1 index bigger every iteration
+            numsUser = Arrays.copyOf(numsUser, numsUser.length + 1);
         }
-        //gets the index size of the array list and and removes the last index integer (-1)
-        int numsIndex = nums.size() - 1;
-        nums.remove(numsIndex);
-        //converting list array (nums) to array (numsArray)
-        Object[] numsArray = nums.toArray();
-        //for loop iterates backwards to display the values from the array in reverse order
+        //decreases array size by 2 to get rid of the -1 in the array
+        numsUser = Arrays.copyOf(numsUser, numsUser.length - 2);
+        //prints out the array in reverse order
         System.out.println("Your values, reversed:");
-        for (int i = numsArray.length - 1; i >= 0; i--) {
-            System.out.println(numsArray[i]);
+        for (int i = numsUser.length - 1; i >= 0; i--) {
+            System.out.println(numsUser[i]);
         }
 
     }
